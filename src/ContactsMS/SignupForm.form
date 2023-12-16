@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ContactsMS.SignupForm">
   <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="648" height="605"/>
+      <xy x="20" y="20" width="648" height="706"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -204,7 +204,7 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="84041" class="javax.swing.JButton" binding="btnClear">
+          <component id="84041" class="javax.swing.JButton" binding="btnCancel">
             <constraints>
               <grid row="15" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -216,7 +216,7 @@
               <horizontalTextPosition value="11"/>
               <icon value="icon/ic_cancel_03_rad_32x32.png"/>
               <iconTextGap value="2"/>
-              <text value="cancel"/>
+              <text value="Cancel"/>
             </properties>
           </component>
           <component id="57b54" class="javax.swing.JToolBar$Separator">

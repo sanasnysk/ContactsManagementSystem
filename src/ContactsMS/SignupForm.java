@@ -87,7 +87,7 @@ public class SignupForm extends JFrame {
             }
         });
 
-        btnClear.addActionListener(new ActionListener() {
+        btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LoginForm lif = new LoginForm();
@@ -215,7 +215,7 @@ public class SignupForm extends JFrame {
     private JPasswordField txtPassword;
     private JTextField txtFirstname;
     private JButton btnSubmit;
-    private JButton btnClear;
+    private JButton btnCancel;
     private JLabel lblAlready;
     private JButton btnBrowse;
     private JLabel lblPicture;
