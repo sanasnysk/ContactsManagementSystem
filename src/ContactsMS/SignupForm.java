@@ -1,13 +1,11 @@
 package ContactsMS;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -19,7 +17,6 @@ public class SignupForm extends JFrame {
     JFileChooser filec;
     String imagePath = null;
     Connection con = myConnection.getConnection();
-    PreparedStatement pstmt;
     SignupForm() {
         initSignUp();
     }
@@ -55,6 +52,8 @@ public class SignupForm extends JFrame {
 
                     try {
                         InputStream img = new FileInputStream(imagePath);
+
+                        PreparedStatement pstmt;
 
                         String query = "INSERT INTO user (fname,lname,username,pass,pic) Values (?,?,?,?,?)";
                         pstmt = con.prepareStatement(query);
@@ -169,33 +168,8 @@ public class SignupForm extends JFrame {
     }
 
     public void fileChooser() {
-        filec = new JFileChooser();
-        filec.setCurrentDirectory(new File(System.getProperty("user.home")));
-        // file extension
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg", "png", "gif");
-        filec.addChoosableFileFilter(filter);
-
-        int fileState = filec.showOpenDialog(null);
-        // if the user select a file
-        if (fileState == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = filec.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-            imagePath = path;
-
-            lblPicture.setIcon(resizePic(path));
-/*
-            // display the image in the jlabel
-            ImageIcon icon1 = new ImageIcon(path);
-            Image image = icon1.getImage().getScaledInstance(256,256,Image.SCALE_DEFAULT);
-            ImageIcon icon2 = new ImageIcon(image);
-
-            lblPicture.setIcon(new ImageIcon(icon2.getImage()));
-
- */
-
-        } else if (fileState == JFileChooser.CANCEL_OPTION) {// if the user cancel
-            System.out.println("No Image Selected");
-        }
+        MyFunc mf = new MyFunc();
+        imagePath = mf.browseImage(lblPicture);
 
     }
 
@@ -222,4 +196,9 @@ public class SignupForm extends JFrame {
     private JPasswordField txtRepass;
     private JTextField txtUsername;
     private JTextField txtLastname;
+
+    public static void main(String[] args) {
+        SignupForm sf = new SignupForm();
+        sf.setVisible(true);
+    }
 }
