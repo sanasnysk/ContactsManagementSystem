@@ -49,16 +49,19 @@ public class LoginForm extends JFrame{
                 String user = txtUser.getText();
                 String pas = new String(txtPassword.getPassword());
                 try {
-                    String query = "SELECT username, pass, pic FROM user WHERE username = ? AND pass = ?";
+                    String query = "SELECT username, pass, pic, id FROM user WHERE username = ? AND pass = ?";
                     pstmt = con.prepareStatement(query);
                     pstmt.setString(1, user);
                     pstmt.setString(2,pas);
 
                     rs = pstmt.executeQuery();
                     if (rs.next()){
+                        // get the current user id
+                        MyContacts.currentUserId = rs.getInt("id");
+                        //System.out.println(rs.getInt("id") + " From Login");
                         MyContacts mcf = new MyContacts();
                         mcf.setVisible(true);
-                        //mcf.pack();
+                        mcf.pack();
                         mcf.setLocationRelativeTo(null);
                         mcf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         dispose();
